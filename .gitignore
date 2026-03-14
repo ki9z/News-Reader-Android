@@ -16,3 +16,6 @@
 *.aab
 *.keystore
 *.jks
+# IDE
+.idea/
+.vscode/
