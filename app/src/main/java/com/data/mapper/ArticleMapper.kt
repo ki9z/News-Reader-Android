@@ -1,5 +1,5 @@
-import com.example.myapplication.data.remote.model.ArticleJson
-import com.example.myapplication.data.remote.model.BlockJson
+import com.example.myapplication.data.remote.dto.ArticleJson
+import com.example.myapplication.data.remote.dto.BlockJson
 import com.example.myapplication.data.local.entity.Article
 import com.example.myapplication.data.local.entity.Block
 import com.example.myapplication.data.utils.toTimestamp
