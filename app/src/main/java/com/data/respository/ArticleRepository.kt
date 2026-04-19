@@ -32,18 +32,21 @@ class ArticleRepository(
             val categoryDao = db.categoryDao()
             val articleDao = db.articleDao()
             val blockDao = db.blockDao()
-
+            val sourceDao = db.SourceDao()
             articles.forEach { articleJson ->
 
                 val existing = categoryDao.findByName(articleJson.category)
-
+                val existing2 = sourceDao.findByName(articleJson.source)
                 val categoryId = existing?.id
                     ?: categoryDao.insert(
                         Category(name = articleJson.category)
                     )
-
+                val sourceId = existing2?.id
+                    ?: sourceDao.insert(
+                        Source(name = articleJson.source)
+                    )
                 val articleId = articleDao.insert(
-                    ArticleMapper.toArticleEntity(articleJson, categoryId)
+                    ArticleMapper.toArticleEntity(articleJson, categoryId,sourceId)
                 )
                 if (articleId == -1L) return@forEach
                 val blocks = ArticleMapper.toBlockEntities(
