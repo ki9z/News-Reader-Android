@@ -13,8 +13,9 @@ object ArticleMapper {
         return Article(
             remoteId = json.id.trim(),
             title = json.title.trim(),
+            thumbnail = json.thumbnail?.trim().orEmpty(),
             author = json.author?.trim().orEmpty(),
-            source = json.source?.trim().orEmpty(),
+            sourceId = sourceId,
             categoryId = categoryId,
             publishAt = json.time.toTimestamp(),
             createdAt = System.currentTimeMillis(),
