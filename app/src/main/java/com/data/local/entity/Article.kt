@@ -12,6 +12,12 @@ import com.example.myapplication.data.domain.*
         parentColumns = ["id"],
         childColumns = ["categoryId"],
         onDelete = ForeignKey.CASCADE
+        ),
+        ForeignKey(
+            entity = Source::class,
+            parentColumns = ["id"],
+            childColumns = ["sourceId"],
+            onDelete = ForeignKey.CASCADE
         )
     ],
     indices = [Index(value=["remoteId"],unique=true)]
@@ -20,8 +26,9 @@ data class Article(
     @PrimaryKey(autoGenerate= true) val id:Int = 0,
     val remoteId: String,
     val title: String,
+    val thumbnail: String?,
     val author: String?,
-    val source: String?,
+    val sourceId: Long?,
     val categoryId: Long,
     val publishAt: Long,
     val createdAt: Long,
