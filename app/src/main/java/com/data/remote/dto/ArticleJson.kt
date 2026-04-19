@@ -5,6 +5,7 @@ data class ArticleJson(
     val source: String,
     val author: String,
     val title: String,
+    val thumbnail: String,
     val time: String,
     val id: String,
     val url: String,
