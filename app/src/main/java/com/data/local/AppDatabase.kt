@@ -13,7 +13,9 @@ import android.content.Context
         Article::class,
         Block::class,
         ArticleUser::class,
-        CategoryUser::class
+        CategoryUser::class,
+        Source::class,
+        SourceUser::class
     ],
     version = 1,
     exportSchema = true
@@ -21,10 +23,12 @@ import android.content.Context
 abstract class AppDatabase : RoomDatabase() {
     abstract fun categoryDao(): CategoryDao
     abstract fun userDao(): UserDao
+    abstract fun SourceDao(): SourceDao
     abstract fun articleDao(): ArticleDao
     abstract fun blockDao(): BlockDao
     abstract fun articleUserDao(): ArticleUserDao
     abstract fun categoryUserDao(): CategoryUserDao
+    abstract fun sourceUserDao(): SourceUserDao
     companion object {
         @Volatile
         private var INSTANCE: AppDatabase? = null
