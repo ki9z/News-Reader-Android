@@ -27,5 +27,8 @@ data class UserSettings(
     val articleStyle: String = "comfortable",
     val breakingNewsEnabled: Boolean = true,
     val dailyDigestEnabled: Boolean = true,
-    val syncHistoryEnabled: Boolean = false
+    val syncHistoryEnabled: Boolean = false,
+    
+    // Auth type
+    val currentAuthType: String = "user"
 )

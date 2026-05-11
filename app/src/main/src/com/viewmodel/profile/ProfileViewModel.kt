@@ -2,6 +2,8 @@ package com.viewmodel.profile
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.data.local.dao.UserDao
+import com.data.local.entity.UserEntity
 import com.data.settings.AuthProvider
 import com.data.settings.UserSettings
 import com.data.settings.UserSettingsRepository
@@ -11,7 +13,8 @@ import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
 class ProfileViewModel(
-    private val userSettingsRepository: UserSettingsRepository
+    private val userSettingsRepository: UserSettingsRepository,
+    private val userDao: UserDao
 ) : ViewModel() {
 
     val settings: StateFlow<UserSettings> = userSettingsRepository.userSettingsFlow
@@ -19,6 +22,13 @@ class ProfileViewModel(
             scope = viewModelScope,
             started = SharingStarted.WhileSubscribed(5_000),
             initialValue = UserSettings()
+        )
+
+    val currentUser: StateFlow<UserEntity?> = userDao.observeSignedInUser()
+        .stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.WhileSubscribed(5_000),
+            initialValue = null
         )
 
     fun setDarkModeEnabled(enabled: Boolean) {
@@ -150,6 +160,12 @@ class ProfileViewModel(
     fun logout() {
         viewModelScope.launch {
             userSettingsRepository.logout()
+        }
+    }
+
+    fun setAuthType(authType: String) {
+        viewModelScope.launch {
+            userSettingsRepository.setAuthType(authType)
         }
     }
 }
