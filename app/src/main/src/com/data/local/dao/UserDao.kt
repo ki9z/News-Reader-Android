@@ -15,13 +15,22 @@ interface UserDao {
     @Query("SELECT * FROM users WHERE id = :userId LIMIT 1")
     suspend fun getById(userId: String): UserEntity?
 
+    @Query("SELECT * FROM users WHERE email = :email LIMIT 1")
+    suspend fun getByEmail(email: String): UserEntity?
+
     @Query("SELECT * FROM users WHERE isSignedIn = 1 LIMIT 1")
     fun observeSignedInUser(): Flow<UserEntity?>
+
+    @Query("SELECT * FROM users WHERE isSignedIn = 1 LIMIT 1")
+    suspend fun getSignedInUser(): UserEntity?
 
     @Query("UPDATE users SET isSignedIn = CASE WHEN id = :userId THEN 1 ELSE 0 END, updatedAt = :updatedAt")
     suspend fun markSingleSignedIn(userId: String, updatedAt: Long)
 
     @Query("UPDATE users SET isSignedIn = 0, updatedAt = :updatedAt")
     suspend fun signOutAll(updatedAt: Long)
+
+    @Query("SELECT role FROM users WHERE id = :userId LIMIT 1")
+    suspend fun getUserRole(userId: String): String?
 }
 

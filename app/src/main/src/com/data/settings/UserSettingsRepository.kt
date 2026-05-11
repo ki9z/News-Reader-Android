@@ -41,7 +41,8 @@ class UserSettingsRepository(
             articleStyle = prefs[KEY_ARTICLE_STYLE] ?: DEFAULT_ARTICLE_STYLE,
             breakingNewsEnabled = prefs[KEY_BREAKING_NEWS] ?: true,
             dailyDigestEnabled = prefs[KEY_DAILY_DIGEST] ?: true,
-            syncHistoryEnabled = prefs[KEY_SYNC_HISTORY] ?: false
+            syncHistoryEnabled = prefs[KEY_SYNC_HISTORY] ?: false,
+            currentAuthType = prefs[KEY_AUTH_TYPE] ?: "user"
         )
     }
 
@@ -188,6 +189,12 @@ class UserSettingsRepository(
         }
     }
 
+    suspend fun setAuthType(authType: String) {
+        context.userSettingsDataStore.edit { prefs ->
+            prefs[KEY_AUTH_TYPE] = authType
+        }
+    }
+
     private suspend fun updateBoolean(key: Preferences.Key<Boolean>, value: Boolean) {
         context.userSettingsDataStore.edit { prefs ->
             prefs[key] = value
@@ -230,6 +237,7 @@ class UserSettingsRepository(
         private val KEY_BREAKING_NEWS = booleanPreferencesKey("breaking_news_enabled")
         private val KEY_DAILY_DIGEST = booleanPreferencesKey("daily_digest_enabled")
         private val KEY_SYNC_HISTORY = booleanPreferencesKey("sync_history_enabled")
+        private val KEY_AUTH_TYPE = stringPreferencesKey("current_auth_type")
 
         private fun decodeProviders(raw: String?): Set<String> {
             if (raw.isNullOrBlank()) return emptySet()

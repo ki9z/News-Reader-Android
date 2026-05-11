@@ -341,4 +341,22 @@
     <string name="profile_local_data_cleared">Local data cleared</string>
     <string name="bookmark_empty_title">No saved articles</string>
     <string name="bookmark_empty_message">Articles you bookmark will appear here.</string>
+    
+    <!-- Login/Register Strings -->
+    <string name="login_title" translatable="false">Đăng nhập</string>
+    <string name="login_subtitle">Đăng nhập để sử dụng đầy đủ tính năng</string>
+    <string name="login_email_hint">Email</string>
+    <string name="login_password_hint">Mật khẩu</string>
+    <string name="login_name_hint">Họ và tên</string>
+    <string name="login_button">Đăng nhập</string>
+    <string name="login_toggle_text">Bạn chưa có tài khoản?</string>
+    <string name="login_toggle_button">Đăng ký</string>
+    <string name="login_or">hoặc</string>
+    <string name="login_google">Đăng nhập với Google</string>
+    <string name="login_facebook">Đăng nhập với Facebook</string>
+    <string name="login_phone">Đăng nhập với SĐT</string>
+    <string name="register_title" translatable="false">Đăng ký</string>
+    <string name="register_toggle_text">Bạn đã có tài khoản?</string>
+    <string name="register_toggle_button">Đăng nhập</string>
+    <string name="register_button">Đăng ký</string>
 </resources>
