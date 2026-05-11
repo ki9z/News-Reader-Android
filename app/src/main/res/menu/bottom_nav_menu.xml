@@ -3,13 +3,17 @@
     <item
         android:id="@+id/homeFragment"
         android:title="@string/home_title"
-        android:icon="@android:drawable/ic_menu_view" />
+        android:icon="@drawable/ic_bottom_home" />
+    <item
+        android:id="@+id/localFragment"
+        android:title="@string/local_title"
+        android:icon="@drawable/ic_bottom_local" />
     <item
         android:id="@+id/searchFragment"
         android:title="@string/search_title"
-        android:icon="@android:drawable/ic_menu_search" />
+        android:icon="@drawable/ic_bottom_search" />
     <item
-        android:id="@+id/bookmarkFragment"
-        android:title="@string/bookmark_title"
-        android:icon="@android:drawable/btn_star_big_off" />
+        android:id="@+id/profileFragment"
+        android:title="@string/profile_title"
+        android:icon="@drawable/ic_bottom_profile" />
 </menu>
