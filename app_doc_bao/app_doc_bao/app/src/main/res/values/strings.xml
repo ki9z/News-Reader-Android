@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">app_doc_bao</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="title_activity_register_screen">RegisterScreen</string>
+    <string name="title_activity_app_navigation">AppNavigation</string>
+    <string name="title_activity_forgot_password_screen">ForgotPasswordScreen</string>
+    <string name="title_activity_otp_screen">OtpScreen</string>
+    <string name="title_activity_reset_password">resetPassword</string>
+    <string name="title_activity_admin_home_screen">AdminHomeScreen</string>
+    <string name="title_activity_user_storage">UserStorage</string>
+    <string name="title_activity_otpscreen">OTPScreen</string>
+    <string name="title_activity_change_password_screen">ChangePasswordScreen</string>
+</resources>

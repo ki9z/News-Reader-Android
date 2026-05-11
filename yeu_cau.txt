@@ -1,0 +1,77 @@
+Tôi có 2 project Android:
+
+1. NewsReaderAndroid(2).zip
+- Đây là app đọc báo chính.
+- Dùng XML layout, Fragment, Navigation Component XML, ViewBinding, Room, Retrofit.
+- MainActivity chính là com.ui.main.MainActivity.
+- Project này phải được giữ làm project gốc.
+
+2. app_doc_bao.zip
+- Đây là phần quản trị/admin.
+- Dùng Jetpack Compose, navigation-compose, Room.
+- MainActivity là com.example.app_doc_bao.MainActivity.
+- Có các màn hình login, register, OTP, admin home, quản lý bài báo, quản lý user/admin, thống kê.
+
+Yêu cầu:
+Hãy ghép app_doc_bao vào NewsReaderAndroid thành một project hoàn chỉnh.
+
+Cách ghép mong muốn:
+1. Giữ NewsReaderAndroid làm project gốc.
+2. Copy toàn bộ package com.example.app_doc_bao từ app_doc_bao vào:
+   NewsReaderAndroid/app/src/main/src/com/example/app_doc_bao/
+3. Không ghi đè AndroidManifest.xml của project chính.
+4. Trong AndroidManifest.xml của project chính, thêm activity:
+   <activity
+       android:name="com.example.app_doc_bao.MainActivity"
+       android:exported="false"
+       android:theme="@style/Theme.NewsReaderAndroid" />
+5. Giữ com.ui.main.MainActivity là launcher activity.
+6. Trong Profile của app chính, thêm một nút hoặc dòng menu tên "Quản trị bài báo".
+7. Khi bấm nút đó, mở com.example.app_doc_bao.MainActivity bằng Intent.
+8. Bật Jetpack Compose trong app/build.gradle.kts:
+   buildFeatures {
+       viewBinding = true
+       buildConfig = true
+       compose = true
+   }
+9. Thêm plugin Compose:
+   alias(libs.plugins.kotlin.compose)
+10. Trong gradle/libs.versions.toml thêm:
+   kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+11. Thêm các dependencies Compose:
+   implementation(platform("androidx.compose:compose-bom:2024.09.00"))
+   implementation("androidx.activity:activity-compose:1.9.3")
+   implementation("androidx.compose.ui:ui")
+   implementation("androidx.compose.ui:ui-graphics")
+   implementation("androidx.compose.ui:ui-tooling-preview")
+   implementation("androidx.compose.material3:material3")
+   implementation("androidx.compose.material:material-icons-extended")
+   implementation("androidx.navigation:navigation-compose:2.8.4")
+   implementation("io.coil-kt:coil-compose:2.6.0")
+   implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3")
+   debugImplementation("androidx.compose.ui:ui-tooling")
+   debugImplementation("androidx.compose.ui:ui-test-manifest")
+12. Không copy đè assets news1.json, news2.json, news3.json, news4.json.
+13. Đổi assets của app_doc_bao thành:
+   admin_news1.json
+   admin_news2.json
+   admin_news3.json
+   admin_news4.json
+14. Sửa DatabaseInitializer.kt của app_doc_bao để đọc admin_news1.json đến admin_news4.json.
+15. Sửa lỗi import trong AppNavigation.kt nếu có dòng import bị dính:
+   import com.example.app_doc_bao.viewmodel.auth.* import com.example.app_doc_bao.data.local.AppDatabase
+   thành:
+   import com.example.app_doc_bao.viewmodel.auth.*
+   import com.example.app_doc_bao.data.local.AppDatabase
+16. Tạm thời giữ 2 database riêng:
+   news_reader_db cho app chính
+   news_db cho admin
+17. Sau khi sửa, hãy kiểm tra lỗi compile và đưa ra các file đã chỉnh.
+
+Kết quả mong muốn:
+- App vẫn mở bằng MainActivity của NewsReaderAndroid.
+- Tab Profile có nút "Quản trị bài báo".
+- Bấm vào mở phần admin Compose của app_doc_bao.
+- Không mất dữ liệu assets cũ.
+- Không bị lỗi duplicate resource.
+- Không bị lỗi duplicate launcher activity.

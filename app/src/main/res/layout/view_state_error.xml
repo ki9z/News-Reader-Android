@@ -10,7 +10,7 @@
         android:layout_width="96dp"
         android:layout_height="96dp"
         android:src="@drawable/ic_error"
-        android:contentDescription="Error" />
+        android:contentDescription="@string/error_content_description" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -34,6 +34,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:text="@string/retry" />
+        android:text="@string/local_retry" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnSaved"
+        style="@style/Widget.Material3.Button.TextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/local_try_saved" />
 
 </LinearLayout>
